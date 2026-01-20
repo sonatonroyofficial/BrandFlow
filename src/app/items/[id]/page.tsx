@@ -7,11 +7,13 @@ import Image from "next/image";
 import { Button } from "@/components/Button";
 import { Loader2, ArrowLeft, ShoppingCart, Check } from "lucide-react";
 import { Item } from "@/lib/items";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ItemDetailsPage() {
     const params = useParams();
     const router = useRouter();
     const id = params.id as string;
+    const { user, loading: authLoading } = useAuth();
 
     const [item, setItem] = useState<Item | null>(null);
     const [loading, setLoading] = useState(true);
@@ -19,6 +21,11 @@ export default function ItemDetailsPage() {
     const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {
+        if (!authLoading && !user) {
+            router.push(`/login?redirect=/items/${id}`);
+            return;
+        }
+
         if (!id) return;
 
         const fetchItem = async () => {
@@ -43,14 +50,14 @@ export default function ItemDetailsPage() {
         };
 
         fetchItem();
-    }, [id, router]);
+    }, [id, router, user, authLoading]);
 
     const handleAddToCart = () => {
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 2000); // Reset state after 2 seconds
     };
 
-    if (loading) {
+    if (loading || authLoading) {
         return (
             <div className="flex h-[calc(100vh-4rem)] items-center justify-center bg-white dark:bg-zinc-950">
                 <Loader2 className="h-8 w-8 animate-spin text-blue-600" />

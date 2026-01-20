@@ -72,7 +72,11 @@ export default function ItemsPage() {
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 {items.map((item) => (
-                    <Link key={item.id} href={`/items/${item.id}`} className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 transition-all duration-300 hover:shadow-lg dark:bg-zinc-900 dark:ring-zinc-800">
+                    <Link
+                        key={item.id}
+                        href={user ? `/items/${item.id}` : `/login?redirect=/items/${item.id}`}
+                        className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 transition-all duration-300 hover:shadow-lg dark:bg-zinc-900 dark:ring-zinc-800"
+                    >
                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-t-2xl bg-zinc-200 xl:aspect-h-8 xl:aspect-w-7">
                             <div className="relative h-64 w-full">
                                 <Image

@@ -12,6 +12,8 @@ const options = {
         strict: true,
         deprecationErrors: true,
     },
+    // Force IPv4 to avoid querySrv ECONNREFUSED errors on some networks (like Windows/Node issues)
+    family: 4,
 };
 
 let client;

@@ -48,7 +48,8 @@ export default function AddItemPage() {
             });
 
             if (!response.ok) {
-                throw new Error("Failed to add item");
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || "Failed to add item");
             }
 
             toast.success("Item added successfully!");
@@ -56,7 +57,8 @@ export default function AddItemPage() {
             router.refresh();
         } catch (error) {
             console.error("Error adding item:", error);
-            toast.error("Failed to add item. Please try again.");
+            const errorMessage = error instanceof Error ? error.message : "Failed to add item";
+            toast.error(errorMessage);
         } finally {
             setIsSubmitting(false);
         }
@@ -123,7 +125,7 @@ export default function AddItemPage() {
                                     value={formData.price}
                                     onChange={handleChange}
                                     className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 dark:bg-zinc-800 dark:text-white dark:ring-zinc-700 sm:text-sm sm:leading-6"
-                                    placeholder="e.g. $299"
+                                    placeholder="e.g. ৳299"
                                 />
                             </div>
                         </div>

@@ -53,6 +53,8 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.error("Error adding item to DB:", error);
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    return NextResponse.json({
+      error: error instanceof Error ? error.message : "Unknown error"
+    }, { status: 500 });
   }
 }

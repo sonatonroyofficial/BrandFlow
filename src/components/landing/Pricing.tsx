@@ -6,7 +6,7 @@ const tiers = [
         name: "Hobby",
         id: "tier-hobby",
         href: "#",
-        priceMonthly: "$0",
+        priceMonthly: "৳0",
         description: "The perfect plan if you're just getting started with our product.",
         features: ["5 products", "Up to 1,000 subscribers", "Basic analytics", "48-hour support response time"],
         featured: false,
@@ -15,7 +15,7 @@ const tiers = [
         name: "Pro",
         id: "tier-pro",
         href: "#",
-        priceMonthly: "$29",
+        priceMonthly: "৳3,480",
         description: "Dedicated support and infrastructure for your company.",
         features: [
             "25 products",
@@ -30,7 +30,7 @@ const tiers = [
         name: "Enterprise",
         id: "tier-enterprise",
         href: "#",
-        priceMonthly: "$99",
+        priceMonthly: "৳11,880",
         description: "Custom features and dedicated ongoing support.",
         features: [
             "Unlimited products",

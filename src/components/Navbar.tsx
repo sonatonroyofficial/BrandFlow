@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "./Button";
@@ -25,7 +26,7 @@ export function Navbar() {
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600"></div>
+                    <Image src="/logo.png" alt="BrandFlow Logo" width={32} height={32} className="h-8 w-8 object-contain" />
                     <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
                         Brand<span className="text-blue-600">Flow</span>
                     </span>
